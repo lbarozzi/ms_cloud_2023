@@ -1,8 +1,19 @@
 ﻿using Day1Lab1.Models;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Day1Lab1 {
     internal class Program {
         static void Main(string[] args) {
+            int a = 5; int b=6;
+            Console.WriteLine($"a= {a} b={b}");
+            Somma(a, b);
+            Console.WriteLine($"a= {a} b={b}");
+            Contatto t1 = Contatto.GetRandomContact();
+            Console.WriteLine(t1);
+            CambiaNumero(t1);
+            Console.WriteLine(t1);
+
+
             //Console.WriteLine("Hello, World!");
             //Step 1: Credo 10 Contatti e li visualizzo
             //Contatto c = new Contatto();
@@ -118,6 +129,15 @@ namespace Day1Lab1 {
                 Console.WriteLine("Invalid Choice");
             }
             return result;
+        }
+        //WARN: BUG!!!!
+        static void  Somma(int a, int b) {
+            a += b;
+            Console.WriteLine($"In function a={a} b={b}");
+        }
+
+        static void CambiaNumero(Contatto ctx) {
+            ctx.PhoneNumber = "1234567891234597";
         }
     }
 }
