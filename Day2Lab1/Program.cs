@@ -3,11 +3,11 @@ using System.Text;
 
 Console.WriteLine("MasterMind!");
 
-
 List<string> Tentatives=   new List<string>();
 string key;
 string tentative;
 MMind game = new MMind();
+
 do {
     Console.Write("please insert key:");
     key =Console.ReadLine().ToUpper();
@@ -36,8 +36,6 @@ if (i == 9) {
     Console.WriteLine("You loose");
 }
 Console.ReadLine();
-
-
 
 public class MMind {
 
