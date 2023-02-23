@@ -30,7 +30,11 @@ namespace Day1Lab1 {
                         exit = true;
                         break;
                     case 1:
-                        NewContact(AmiciMiei); 
+                        try {
+                            NewContact(AmiciMiei);
+                        }catch(ArgumentOutOfRangeException ops) {
+                            Console.WriteLine($"Unable to insert data: {ops.Message}");
+                        }
                         break;
                     //AddContact
                     case 2:
@@ -98,8 +102,15 @@ namespace Day1Lab1 {
             Console.Write("Surname; ");
             string s= Console.ReadLine();
             Console.Write("Phone: ");
-            string p= Console.ReadLine();   
-            rub.AddContatto(new Contatto(n, s, p)); 
+            string p= Console.ReadLine();
+
+            //try {
+                rub.AddContatto(new Contatto(n, s, p));
+            //}catch(ArgumentOutOfRangeException ops) {
+            //    Console.WriteLine(ops.Message);
+            //} finally { 
+            //    Console.WriteLine("exit");
+            //}
         }
         static void Show(Rubrica rub) {
             Console.WriteLine("");

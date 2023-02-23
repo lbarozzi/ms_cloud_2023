@@ -6,25 +6,49 @@ namespace Day1Lab1.Models {
 
     public class Rubrica {
         protected List<Contatto> _elenco;
+        protected Dictionary<string, Contatto> _dictio;
+        //protected Dictionary<int, Contatto> _dictio;
         public Rubrica() {
             _elenco= new List<Contatto>();
             Console.WriteLine("Creato una rubrica!");
         }
 
         public void AddContatto(Contatto contatto) {
+            if (_dictio.ContainsKey(contatto.Name)) {
+                throw new ArgumentOutOfRangeException("Nome duplicato!");
+            }
             _elenco.Add(contatto);
+            _dictio[contatto.Name] = contatto;  
         }
 
         //public void DeleteContatto();
         //public void EditContatto();
-
+        public Contatto GetContattoByFullName(string fName) { 
+            return _dictio[fName];  
+        }
         public List<Contatto> ListaContatti() { 
+            return _dictio.Values();
             //TODO: filter
             return _elenco;
         }
 
+        public Contatto GetByLastName(string lastName) {
+            return (from contatto in _elenco
+                    where contatto.Surname == lastName
+                    select contatto).First();
+            //Dictionari
+            return (from Contatto in _dictio.Values
+                    where Contatto.Surname == lastName
+                    select Contatto).First();
+        }
+
         public Contatto GetFirstByName(string _nome) {
-            foreach(Contatto ct in _elenco) { 
+            if (_dictio.ContainsKey(_nome)) { 
+                return _dictio[_nome]; 
+            } else
+                throw new ArgumentOutOfRangeException("Nome non trovato!");
+            //OLD Code
+            foreach (Contatto ct in _elenco) { 
                 if(ct.Name == _nome) return ct;    
             }
             //Avoid this: return null;
