@@ -27,7 +27,7 @@ namespace Day1Lab1.Models {
             return _dictio[fName];  
         }
         public List<Contatto> ListaContatti() { 
-            return _dictio.Values();
+            //return _dictio.Values;
             //TODO: filter
             return _elenco;
         }
