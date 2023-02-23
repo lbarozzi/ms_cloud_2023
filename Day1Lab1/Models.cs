@@ -38,7 +38,15 @@ namespace Day1Lab1.Models {
             return r;
         }
     }
-    public class Contatto {
+    public abstract class Persona {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string PhoneNumber { get; set; }
+
+        public abstract string GetPersonType();
+    }
+
+    public class Contatto : Persona{
         /** Promemoria
         protected string _Antatni;
         public string getAntani() {  return _Antatni;}
@@ -49,14 +57,16 @@ namespace Day1Lab1.Models {
                 "Gialuigi","Laura","Liang","Marco","Maria","Martina","Massimiliano"};
         protected static string[] SurnameList = { "foo", "Bar", "red", "green" };
         protected static int _counter = 0;
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string PhoneNumber { get; set; }
+       
 
         public string FullName {
             get {
                 return $"{this.Name} {this.Surname}";
             }
+        }
+
+        public override string GetPersonType() {
+            return $"I'm a Contact";
         }
 
         public virtual void Contatta() {   
@@ -103,4 +113,8 @@ namespace Day1Lab1.Models {
         }
     }
 
+    public class Customer {
+        public string Name { get; set; }    
+
+    }
 }

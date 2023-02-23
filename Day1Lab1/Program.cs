@@ -47,6 +47,10 @@ namespace Day1Lab1 {
                 }
             } while (!exit);
 
+            IPositionable pippo = new Car();
+            IPositionable pluto = new WareHouse();
+
+            Console.WriteLine(pluto.GetCurrentGPSPosition());
 
             
             //for(int i = 0; i<10;i++) {
