@@ -3,11 +3,14 @@
 @{
     ViewData["Title"] = "Home page";
     //ToDoModel.ToDoPriority
+    var prios = Enum.GetValues(typeof(ToDoModel.ToDoPriority) );
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <!-- p>Learn about 
+        <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.
+     </p -->
     <hr />
     <h2>ToDoList:</h2>
     <ul>
@@ -18,4 +21,28 @@
     }
     </ul>
     <hr />
+
+    <form method="post" class="form-control">
+        <label class="form-control" asp-for="Description"></label>
+        <input class ="form-control" asp-for="Description" />
+        <br />
+        <label class="form-control" asp-for="DueDate"></label>
+        <input class="form-control" asp-for="DueDate" />
+        <br />
+        <label class="form-control" asp-for="Priority"></label>
+        <select class="form-control" asp-for="Priority">
+            @if (prios != null)
+            {
+                @foreach (var s in prios)
+                {
+                    <option value="@((int)s)">@s.ToString()</option>
+                }
+            }
+        </select>
+        <br />
+        <label class="form-control" asp-for="Done"></label>
+        <input type="checkbox" class="form-check" asp-for="Done" />
+        <br />
+        <input class="form-control" type="submit" value="Invia" />
+    </form>
 </div>
