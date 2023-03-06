@@ -3,6 +3,11 @@
         public enum ToDoPriority {
             Low,Normal,High,VeryHigh
         }
+        private static int _id=0;
+        public static int GetNextId() {
+            return _id++; //start from 0
+            //return ++_id; //start from 1
+        }
         public int ID { get; set; }
         public string Description { get; set; }
         public DateTime DueDate { get; set; }
@@ -21,12 +26,18 @@
                 "Prepare letto",
                 "Telefonare Antanti",
                 "Tagliando Macchina",
-                "Sbiriguda"
+                "Sbiriguda",
+                "Riposare",
+                "Cenetta romantica"
             };
             Random r = new Random();
             for(int i=0; i < records; i++) {
+                /*/Explain
+                int indice_eleco = r.Next(elenco.Length);
+                string descrizione_corrente = elenco[indice_eleco]; 
+                //*/
                 this.Add(new ToDoModel() {  
-                    ID = i ,
+                    ID = ToDoModel.GetNextId(), //i ,
                     Description = $"{elenco[r.Next(elenco.Length)]} {i}",
                     DueDate = DateTime.Now,
                     done = false    ,
