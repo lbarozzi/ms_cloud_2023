@@ -1,0 +1,21 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    //ToDoModel.ToDoPriority
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <hr />
+    <h2>ToDoList:</h2>
+    <ul>
+    @foreach(var item in Model._list) {
+        <li class="@item.PriorityLevel">
+            @item.DueDate.ToUniversalTime() => @item.Description (@item.PriorityLevel)
+        </li>
+    }
+    </ul>
+    <hr />
+</div>

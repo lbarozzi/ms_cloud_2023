@@ -1,0 +1,35 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.Low{
+    background-color:gray;
+    color:black;
+}
+.Normal {
+    color: Navy;
+}
+.High {
+    background-color: yellow;
+    color: black;
+}
+
+.VeryHigh {
+    background-color: Red;
+    color: white;
+}
