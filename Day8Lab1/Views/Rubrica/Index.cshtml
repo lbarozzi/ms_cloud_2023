@@ -1,0 +1,25 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Day8Lab1.Models.Rubrica
+
+@{
+}
+
+<h1>Rubrica </h1>
+@if(Model!=null && Model.Count>0) {
+<ul>
+    @*foreach(Anagraphic cur in Model) { *@
+    @for(int i=0;i<Model.Count;i++) {
+            <li>
+                @Model[@i]
+                &nbsp;<a asp-action="Update" asp-route-antani=@i>Update</a>
+                &nbsp;<a asp-action="Delete" asp-route-tokill=@i>Delete</a>
+            </li>
+    }
+</ul>
+} else {
+    <p>Empty Rub</p>
+}
+
+<a  asp-controller="Rubrica" asp-action="New">Add New Item</a>
