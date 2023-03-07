@@ -15,7 +15,7 @@
                 @Model[@i]
                 &nbsp;<a asp-action="Update" asp-route-antani=@i>Update</a>
                 &nbsp;<a asp-action="Delete" asp-route-tokill=@i
-                    onclick="javascript:{ return confirm('Really?'); }">Delete</a>
+                    onclick="return confirm('Really?');">Delete</a>
             </li>
     }
 </ul>

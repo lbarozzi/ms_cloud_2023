@@ -26,6 +26,7 @@ namespace Day8Lab1.Controllers {
         public IActionResult Update(int? antani) {
             if(antani== null || antani >= _rub.Count)
                 return RedirectToAction("index");
+
             ViewData["action"] = "Update";
             return View("/Views/Rubrica/Anagraphic.cshtml", _rub[(int)antani]);
         }
