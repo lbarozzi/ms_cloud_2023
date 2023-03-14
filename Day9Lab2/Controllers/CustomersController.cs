@@ -18,6 +18,46 @@ namespace Day9Lab2.Controllers
             _context = context;
         }
 
+        public IActionResult PopolateDB() {
+            string[] Nome = { "Uno", "Due", "Tre", "Quattro" };
+            //Clean DB
+            _context.Customers.RemoveRange(_context.Customers);
+            _context.SaveChanges(); 
+            //Add new ITEMS 
+            for(int i = 0; i < 75; i++) {
+                Customer pippo = new Customer() {
+                    FullName = Nome[i % Nome.Length],
+                    City = "Torino",
+                    Address = $"Via le mani dalle tasche {i}",
+                    Country = "Italy",
+                    PostalCode = $"{i + 10110}",
+                    Email = $"test{i}@test.com",
+                    Phone = $"555-551-{i}",
+                    IsActive = i % 2 == 0,
+                    IsBlacklisted = i % 7 == 0,
+                    VAT=$"IT0123456{i}",
+                    PictureName="img.jpg"
+                };
+                _context.Customers.Add(pippo);
+            }
+            _context.SaveChanges();
+            //GoTo HOME!
+            return RedirectToAction("Index");
+        }
+        
+        public IActionResult ActiveOnly() {
+            //Method
+            var CustomersActive = _context.Customers
+                                    .Where(x => x.IsActive)
+                                    .ToList();
+            //Query
+            var c_a = (from customer in _context.Customers
+                       where customer.IsActive
+                       select customer
+                     ).ToList();
+            return View("/Views/Customers/Index.cshtml",CustomersActive);
+        }
+
         // GET: Customers
         public async Task<IActionResult> Index()
         {
