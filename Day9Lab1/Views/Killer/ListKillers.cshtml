@@ -1,0 +1,20 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewData["Title"] = "ListKillers";
+}
+
+<h1>ViewKillers</h1>
+
+<p>
+    <form method="post" asp-action="ListKillers">
+        <input type="text" name="killername" />
+        <br />
+        <input type="submit" />
+    </form>
+</p>
+<ol>
+@foreach (var item in Model) {
+        <li>@item</li>
+}
+</ol>
