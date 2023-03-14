@@ -1,9 +1,17 @@
+using Day9Lab2.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+
+string cnString = builder.Configuration.GetConnectionString("DataContext");
+builder.Services.AddDbContext<Datacontext>(context => context.UseSqlite(cnString));
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment()) {
