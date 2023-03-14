@@ -1,4 +1,5 @@
 ﻿namespace Day9Lab2.Models {
+    //POCO
     public class Customer {
         public int ID { get; set; }
         public string VAT { get; set; }

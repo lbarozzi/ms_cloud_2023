@@ -50,13 +50,38 @@ namespace Day9Lab2.Controllers
             var CustomersActive = _context.Customers
                                     .Where(x => x.IsActive)
                                     .ToList();
-            //Query
+            //*/
+            /*/Query
             var c_a = (from customer in _context.Customers
                        where customer.IsActive
                        select customer
                      ).ToList();
+
+            //*/
             return View("/Views/Customers/Index.cshtml",CustomersActive);
         }
+
+        //TODO: View Customer blacklisted orderby ID descending
+        public IActionResult Blacklisted() {
+            return View("/Views/Customers/Index.cshtml",
+                from customer in _context.Customers
+                where customer.IsBlacklisted
+                orderby customer.ID descending
+                select customer
+                );
+        }
+
+        public IActionResult Get10() {
+            var ten_value = _context.Customers
+                    .Skip(0)
+                    .Take(10);
+            var query_ten = (from cust in _context.Customers
+                             select cust)
+                             .Skip(0)
+                             .Take(10);
+            return View("/Views/Customers/Index.cshtml", query_ten);
+        }
+
 
         // GET: Customers
         public async Task<IActionResult> Index()
