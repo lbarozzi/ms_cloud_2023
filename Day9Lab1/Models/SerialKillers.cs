@@ -45,7 +45,8 @@ namespace Day9Lab1.Models {
             return (from killer in Killers
                    where killer.Length == KillerLen
                    //orderby  killer
-                   select killer).ToList();
+                   select killer)
+                   .ToList();
             //*/
             //Method Syntax
             /*/
