@@ -83,6 +83,22 @@ namespace Day10Lab1.Controllers {
         }
 
 
+        [HttpPatch("dodone/{id:int}", Name = "SetDone")]
+        public ActionResult<ToDoItem> SetDone(int id) {
+            var nextToDo = (from item in _context.ToDoItems
+                            where item.ToDoItemID == id
+                            select item).FirstOrDefault();
+
+            if (nextToDo == null) {
+                return NotFound("Item dosen't exists");
+            }
+
+            nextToDo.IsDone = true;
+            _context.SaveChanges();
+            return Ok(nextToDo);
+        }
+
+
         [HttpGet("{id}")] 
         public ActionResult<ToDoItem> Get(int id) {
             var item=(from idx in _context.ToDoItems
