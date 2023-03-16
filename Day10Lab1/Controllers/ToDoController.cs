@@ -37,5 +37,12 @@ namespace Day10Lab1.Controllers {
                    select item;
             //return _context.ToDoItems;
         }
+
+        [HttpPut(Name = "NewItem")]
+        public ToDoItem NewItem(ToDoItem item) {
+            var res = _context.ToDoItems.Add(item);
+            _context.SaveChanges();
+            return res.Entity;
+        }
     }
 }
