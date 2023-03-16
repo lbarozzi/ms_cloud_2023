@@ -1,4 +1,5 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Day10Lab1.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,5 +24,7 @@ if (app.Environment.IsDevelopment()) {
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapToDoItemEndpoints();
 
 app.Run();
