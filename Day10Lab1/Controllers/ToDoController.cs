@@ -11,6 +11,23 @@ namespace Day10Lab1.Controllers {
 
         public ToDoController(DataContext context) {
             _context= context;  
+            //Popola
+            if(context.ToDoItems.Count()==0) {
+                for(int i=0;i<5;i++ ) {
+                    ToDoItem item = new ToDoItem() {
+                        Title = $"Item {i}",
+                        Description = $"Description {i}",
+                        CreationDate = DateTime.Now,
+                        DueDate = DateTime.Now.AddDays(i),
+                        PriorityLevel = 10 + i,
+                        IsDone = false,
+                        IsMandatory = false,    
+                    };
+                    context.ToDoItems.Add(item);
+                }
+                //Savechanges to DB
+                context.SaveChanges();
+            }
         }
 
         [HttpGet(Name ="GetToDoItem")]
