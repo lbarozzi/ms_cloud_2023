@@ -39,6 +39,50 @@ namespace Day10Lab1.Controllers {
             //return _context.ToDoItems;
         }
 
+        [HttpGet("undones",Name ="GetNotDones")]
+        public ActionResult<List<ToDoItem>> GetUndones() {
+            var nextToDo = (from item in _context.ToDoItems
+                            where item.IsDone == false
+                            orderby item.DueDate descending
+                            orderby item.PriorityLevel descending
+                            select item);
+
+            if (nextToDo == null) {
+                return NotFound("nothin to do");
+            }
+            return Ok(nextToDo);
+        }
+
+
+        [HttpGet("dones", Name = "GetDones")]
+        public ActionResult<List<ToDoItem>> GetDones() {
+            var nextToDo = (from item in _context.ToDoItems
+                            where item.IsDone == true
+                            orderby item.DueDate descending
+                            orderby item.PriorityLevel descending
+                            select item);
+
+            if (nextToDo == null) {
+                return NotFound("nothin to do");
+            }
+            return Ok(nextToDo);
+        }
+
+        [HttpGet("nextone", Name = "GetNextOne")]
+        public ActionResult<ToDoItem> GetNext() {
+            var nextToDo = (from item in _context.ToDoItems
+                            where item.IsDone == false
+                            orderby item.DueDate descending
+                            orderby item.PriorityLevel descending
+                            select item).FirstOrDefault();
+
+            if (nextToDo == null) {
+                return NotFound("nothin to do");
+            }
+            return Ok(nextToDo);
+        }
+
+
         [HttpGet("{id}")] 
         public ActionResult<ToDoItem> Get(int id) {
             var item=(from idx in _context.ToDoItems
