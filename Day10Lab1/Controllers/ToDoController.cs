@@ -1,5 +1,6 @@
 ﻿using Day10Lab1c;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Day10Lab1.Controllers {
@@ -38,11 +39,64 @@ namespace Day10Lab1.Controllers {
             //return _context.ToDoItems;
         }
 
-        [HttpPut(Name = "NewItem")]
+        [HttpGet("{id}")] 
+        public ActionResult<ToDoItem> Get(int id) {
+            var item=(from idx in _context.ToDoItems
+                     where idx.ToDoItemID == id
+                     select idx).FirstOrDefault();
+
+            if(item == null) {
+                //NotFound!!
+                return NotFound("ToDoItem not in List");
+            }
+            return Ok(item);
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult Put(int id,ToDoItem item) {
+            var todo = _context.ToDoItems
+                        .Where(idx => idx.ToDoItemID == id)
+                        .FirstOrDefault();
+            if(todo == null) {
+                //
+                return NotFound();
+                //or create a new one
+            }
+            //Copy required fields to Update
+            todo.Title =item.Title;
+            todo.Description=item.Description;
+            todo.IsDone = item.IsDone;
+            todo.IsMandatory = item.IsMandatory;
+            todo.PriorityLevel = item.PriorityLevel;
+            todo.DueDate = item.DueDate;
+            //
+            _context.SaveChanges();
+            return Ok();
+        }
+
+        //*/
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id) {
+            var item = (from idx in _context.ToDoItems
+                        where idx.ToDoItemID == id
+                        select idx).FirstOrDefault();
+
+            if (item == null) {
+                //NotFound!!
+                return NotFound("ToDoItem not in List");
+            }
+            _context.ToDoItems.Remove(item);
+            _context.SaveChanges();
+            return Ok();
+        }
+        //*/
+
+        [HttpPost(Name = "NewItem")]
         public ToDoItem NewItem(ToDoItem item) {
             var res = _context.ToDoItems.Add(item);
             _context.SaveChanges();
             return res.Entity;
         }
+
     }
 }
