@@ -25,7 +25,9 @@ namespace Day13Lab1.Controllers
         public async Task<IActionResult> Index()
         {
               return _context.Addresses != null ? 
-                          View(await _context.Addresses.ToListAsync()) :
+                          View(await _context.Addresses
+                                .Include(c=>c.MyAnagraphic)
+                                .ToListAsync()) :
                           Problem("Entity set 'MyDbContext.Addresses'  is null.");
         }
 
@@ -38,6 +40,7 @@ namespace Day13Lab1.Controllers
             }
 
             var address = await _context.Addresses
+                .Include(c => c.MyAnagraphic)
                 .FirstOrDefaultAsync(m => m.AddressID == id);
             if (address == null)
             {
@@ -62,18 +65,18 @@ namespace Day13Lab1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AddressID,City,Region,PostalCode,Country,Phone,AddressText,MyAnagraphicAnagraphicID")] Address address,
+        public async Task<IActionResult> Create([Bind("AddressID,City,Region,PostalCode,Country,Phone,AddressText,MyAnagraphic")] Address address,
                                                 int? AnagraphicID)
         {
             //MyAnagraphicAnagraphicID
-            /*
-            var Anag = _context.Anagraphics.Find(address.MyAnagraphicAnagraphicID);
+            //*
+            var Anag = _context.Anagraphics.Find(AnagraphicID);
             address.MyAnagraphic = Anag;
             
             //*TO DO Show Manual Revalidation 
             ModelState.ClearValidationState(nameof(address));
             //try to revalidate
-            if (!TryValidateModel(address, nameof(address))  ) {
+            if (!TryValidateModel(address)  ) {
                 //Shit appens!
             }
             //*/

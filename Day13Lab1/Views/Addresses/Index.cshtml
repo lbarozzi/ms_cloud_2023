@@ -30,6 +30,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.AddressText)
             </th>
+            <th>
+                @Html.DisplayNameFor(model=>model.MyAnagraphic)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -53,6 +56,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AddressText)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.MyAnagraphic.CompanyName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.AddressID">Edit</a> |

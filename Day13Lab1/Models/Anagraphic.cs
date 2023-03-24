@@ -44,8 +44,9 @@ namespace Day13Lab1.Models {
         public string Country { get; set; }
         public string Phone { get; set; }
         public string AddressText { get; set; }
-        public int MyAnagraphicAnagraphicID { get; set; }
+        //public int MyAnagraphicAnagraphicID { get; set; }
         [ValidateNever]
+        [ForeignKey("MyAnagraphicAnagraphicID")]
         public Anagraphic MyAnagraphic { get; set; }
     }   
 }
