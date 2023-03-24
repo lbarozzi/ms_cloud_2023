@@ -21,7 +21,7 @@ namespace Day13Lab2.Controllers
         // GET: Temperatures
         public async Task<IActionResult> Index()
         {
-            var dataContext = _context.Temperatures.Include(t => t.Zene);
+            var dataContext = _context.Temperatures.Include(t => t.Zone);
             return View(await dataContext.ToListAsync());
         }
 
@@ -34,7 +34,7 @@ namespace Day13Lab2.Controllers
             }
 
             var temperature = await _context.Temperatures
-                .Include(t => t.Zene)
+                .Include(t => t.Zone)
                 .FirstOrDefaultAsync(m => m.TemperatureID == id);
             if (temperature == null)
             {
@@ -67,11 +67,12 @@ namespace Day13Lab2.Controllers
         {
             if (ModelState.IsValid)
             {
+                temperature.Zone = _context.Zones.Find(temperature.ZoneId);
                 _context.Add(temperature);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ZoneId"] = new SelectList(_context.Zones, "ZoneID", "ZoneID", temperature.ZoneId);
+            ViewData["ZoneId"] = new SelectList(_context.Zones, "ZoneID", "Description", temperature.ZoneId);
             return View(temperature);
         }
 
@@ -137,7 +138,7 @@ namespace Day13Lab2.Controllers
             }
 
             var temperature = await _context.Temperatures
-                .Include(t => t.Zene)
+                .Include(t => t.Zone)
                 .FirstOrDefaultAsync(m => m.TemperatureID == id);
             if (temperature == null)
             {

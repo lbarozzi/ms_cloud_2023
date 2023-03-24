@@ -30,7 +30,7 @@ namespace Day13Lab2.Models {
         public Single TemperatureValue { get; set; }
         //
         public int ZoneId { get; set; }
-        public Zone Zene { get; set; } = new Zone();
+        public Zone Zone { get; set; } = new Zone();
 
     }
 }

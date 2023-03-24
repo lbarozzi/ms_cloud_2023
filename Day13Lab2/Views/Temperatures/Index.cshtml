@@ -19,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.TemperatureValue)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Zene)
+                @Html.DisplayNameFor(model => model.Zone)
             </th>
             <th></th>
         </tr>
@@ -34,7 +34,7 @@
                 @Html.DisplayFor(modelItem => item.TemperatureValue)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Zene.ZoneID)
+                @Html.DisplayFor(modelItem => item.Zone.ZoneID)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.TemperatureID">Edit</a> |
