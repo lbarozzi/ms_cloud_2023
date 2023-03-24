@@ -21,6 +21,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.TargetTemperarure)
             </th>
+            <th>Alarm</th>
+            <th>Temps</th>
             <th></th>
         </tr>
     </thead>
@@ -35,6 +37,15 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TargetTemperarure)
+            </td>
+            <td></td>
+            <td>
+                <!-- temps-->   
+                <ul>
+                    @foreach(var cur_tmp in item.Temperatures) {
+                            <li>@cur_tmp.TemperatureValue</li>
+                        }
+                    </ul>
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ZoneID">Edit</a> |

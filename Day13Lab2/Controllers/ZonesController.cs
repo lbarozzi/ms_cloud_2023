@@ -16,13 +16,36 @@ namespace Day13Lab2.Controllers
         public ZonesController(DataContext context)
         {
             _context = context;
+            //Popola il DB
+            if (_context.Zones.Count() == 0) {
+                Random rnd = new Random();
+                for (int i = 0; i < 15; i++) {
+                    Zone new_zone = new Zone() {
+                        Description = $"Zone {i}",
+                        IsActive = true,
+                        TargetTemperarure = rnd.Next(18, 22)
+                    };
+                    for (int t = 0; t < rnd.Next(2, 15); t++) {
+                        new_zone.Temperatures.Add(
+                            new Temperature() {
+                                TemperatureDate = DateTime.Now,
+                                TemperatureValue = rnd.Next(14, 30)
+                            });
+                    }
+                    _context.Zones.Add(new_zone);
+                }
+                _context.SaveChanges();     //Memento
+            }
         }
+
 
         // GET: Zones
         public async Task<IActionResult> Index()
         {
               return _context.Zones != null ? 
-                          View(await _context.Zones.ToListAsync()) :
+                          View(await _context.Zones
+                                        .Include(x => x.Temperatures)
+                                        .ToListAsync()) :
                           Problem("Entity set 'DataContext.Zones'  is null.");
         }
 

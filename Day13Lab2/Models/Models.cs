@@ -12,7 +12,12 @@ namespace Day13Lab2.Models {
         public bool IsAlarm {
             get {
                 //TODO: Report is any temp is in amlarm
-                return false;
+                int deltaT = 1;
+                var x = from t in Temperatures
+                        where t.TemperatureValue > TargetTemperarure +deltaT || t.TemperatureValue< TargetTemperarure-deltaT
+                        select t;
+
+                return x.Count()!=0;
             }
         }
         //
