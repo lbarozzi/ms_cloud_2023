@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
 
 namespace Day13Lab2.Models {
@@ -26,7 +27,7 @@ namespace Day13Lab2.Models {
 
     public class Temperature {
         public int TemperatureID { get; set; }
-        public DateTime TemperatureDate { get; set; }   
+        public DateTime TemperatureDate { get; set; }
         public Single TemperatureValue { get; set; }
         //
         public int ZoneId { get; set; }
