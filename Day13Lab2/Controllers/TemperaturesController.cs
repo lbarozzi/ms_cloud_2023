@@ -45,9 +45,16 @@ namespace Day13Lab2.Controllers
         }
 
         // GET: Temperatures/Create
-        public IActionResult Create()
+        public IActionResult Create(int? ZoneId)
         {
-            ViewData["ZoneId"] = new SelectList(_context.Zones, "ZoneID", "ZoneID");
+            //ViewData["FixedZoneID"] = ZoneId;
+            if (ZoneId is null) {
+                ViewData["ZoneId"] = new SelectList(_context.Zones, "ZoneID", "Description");
+            } else {
+                ViewData["ZoneId"] = new SelectList(_context.Zones
+                                                            .Where(c=>c.ZoneID== ZoneId), 
+                                                            "ZoneID", "Description");
+            }
             return View();
         }
 
