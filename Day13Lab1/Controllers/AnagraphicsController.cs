@@ -16,13 +16,44 @@ namespace Day13Lab1.Controllers
         public AnagraphicsController(MyDbContext context)
         {
             _context = context;
+            if (_context.Anagraphics.Count() == 0) {
+                for(int i=0;i<10;i++) {
+                    var tmp = new Anagraphic() { 
+                            CompanyName=$"My {i} Company",
+                            VAT=$"{i}01{i}002{i}"
+                        };
+                    for (int j =0 ;j<10;j++) {
+                        tmp.AddressList.Add(
+                            new Address() {
+                                AddressText=$"Via Le mani dalle tasche n° {i*10+j}",
+                                Phone=$"555-{i}-{j}",
+                                PostalCode =$"101{i}{j}",
+                                City="Chicago",
+                                Country="USA",
+                                Region="ANTANI",
+                                MyAnagraphic=tmp
+                            } );
+                    }
+                    //OPS! 
+                    _context.Anagraphics.Add(tmp);
+                }
+                _context.SaveChanges();
+            }
         }
 
         // GET: Anagraphics
         public async Task<IActionResult> Index()
         {
+              //Select * from Anagraphics
+              /*
+               * SELECT * from Anagraphics a 
+               * inner join Address d 
+               * on d.AnagraphicID == a.AnagraphicID
+               */
               return _context.Anagraphics != null ? 
-                          View(await _context.Anagraphics.ToListAsync()) :
+                          View(await _context.Anagraphics
+                                        .Include(adr=>adr.AddressList)
+                                        .ToListAsync()) :
                           Problem("Entity set 'MyDbContext.Anagraphics'  is null.");
         }
 
@@ -35,6 +66,7 @@ namespace Day13Lab1.Controllers
             }
 
             var anagraphic = await _context.Anagraphics
+                .Include(adr => adr.AddressList)
                 .FirstOrDefaultAsync(m => m.AnagraphicID == id);
             if (anagraphic == null)
             {

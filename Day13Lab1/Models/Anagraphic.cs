@@ -30,7 +30,7 @@
 
         public string CompanyName { get; set; }
         public string  VAT { get; set; }
-        List<Address> AddressList { get; set; }
+        public List<Address> AddressList { get; set; } = new List<Address>();
     }
 
     public class Address {

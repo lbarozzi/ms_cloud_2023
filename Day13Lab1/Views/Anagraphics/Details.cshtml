@@ -22,9 +22,22 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.VAT)
         </dd>
+        <!-- -->
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AddressList)
+        </dt>
+        <dd class="col-sm-10">
+            <ul>
+                @foreach(var addr in Model.AddressList) {
+                    <li>@addr.AddressText</li>
+                }
+            </ul>
+        </dd>
+
     </dl>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.AnagraphicID">Edit</a> |
+    <a asp-action="Create" asp-controller="Address" asp-route-AnagraphicID="@Model.AnagraphicID">Add new Address</a>
     <a asp-action="Index">Back to List</a>
 </div>

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Day13Lab1.Models;
+using System.Data;
 
 
 //Antani
@@ -47,8 +48,12 @@ namespace Day13Lab1.Controllers
         }
 
         // GET: Addresses/Create
-        public IActionResult Create()
+        public IActionResult Create(int? AnagraphicID)
         {
+            var Anag = _context.Anagraphics
+                    .Find(AnagraphicID);
+            ViewData["AnagraphicID"] = AnagraphicID;
+            ViewData["Anagraphics"] = Anag;
             return View();
         }
 

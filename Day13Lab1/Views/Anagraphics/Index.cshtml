@@ -18,7 +18,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.VAT)
             </th>
+            <th>Lista Indirizzi</th>
             <th></th>
+            
         </tr>
     </thead>
     <tbody>
@@ -29,6 +31,13 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.VAT)
+            </td>
+            <td>
+                <ol>
+                    @foreach(var addr in item.AddressList) {
+                        <li>@addr.AddressText</li>
+                    }
+                </ol>
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.AnagraphicID">Edit</a> |
