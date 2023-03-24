@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    var trstyle = "";
 }
 
 <h1>Index</h1>
@@ -28,7 +29,11 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+                       
+        @if (item.IsAlarm) {
+            trstyle = "Alarm";
+        }
+       <tr class="@trstyle">
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
@@ -38,7 +43,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.TargetTemperarure)
             </td>
-            <td></td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.IsAlarm)
+            </td>
             <td>
                 <!-- temps-->   
                 <ul>

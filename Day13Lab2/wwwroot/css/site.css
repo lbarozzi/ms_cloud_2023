@@ -16,3 +16,8 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.Alarm {
+    background-color:red;
+    color:white;
+}
