@@ -14,7 +14,9 @@
     <div class="col-md-4">
         <form asp-action="Create">
             
-            <input type="hidden" name="AnagraphicID" value="@AnagraphicID" />
+            <input type="hidden" name="MyAnagraphic" value="@AnagraphicID" />
+            <!-- MyAnagraphicAnagraphicID -->
+            <input type="hidden" name="MyAnagraphicAnagraphicID" value="@AnagraphicID" />
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">

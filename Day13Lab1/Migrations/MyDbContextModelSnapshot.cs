@@ -53,7 +53,7 @@ namespace Day13Lab1.Migrations
 
                     b.HasIndex("MyAnagraphicAnagraphicID");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Addresses", (string)null);
                 });
 
             modelBuilder.Entity("Day13Lab1.Models.Anagraphic", b =>
@@ -72,7 +72,7 @@ namespace Day13Lab1.Migrations
 
                     b.HasKey("AnagraphicID");
 
-                    b.ToTable("Anagraphics");
+                    b.ToTable("Anagraphics", (string)null);
                 });
 
             modelBuilder.Entity("Day13Lab1.Models.Address", b =>

@@ -1,4 +1,7 @@
-﻿namespace Day13Lab1.Models {
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Day13Lab1.Models {
     /*
     public class Student {
 
@@ -41,6 +44,8 @@
         public string Country { get; set; }
         public string Phone { get; set; }
         public string AddressText { get; set; }
+        public int MyAnagraphicAnagraphicID { get; set; }
+        [ValidateNever]
         public Anagraphic MyAnagraphic { get; set; }
     }   
 }

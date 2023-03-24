@@ -62,8 +62,22 @@ namespace Day13Lab1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AddressID,City,Region,PostalCode,Country,Phone,AddressText")] Address address)
+        public async Task<IActionResult> Create([Bind("AddressID,City,Region,PostalCode,Country,Phone,AddressText,MyAnagraphicAnagraphicID")] Address address,
+                                                int? AnagraphicID)
         {
+            //MyAnagraphicAnagraphicID
+            /*
+            var Anag = _context.Anagraphics.Find(address.MyAnagraphicAnagraphicID);
+            address.MyAnagraphic = Anag;
+            
+            //*TO DO Show Manual Revalidation 
+            ModelState.ClearValidationState(nameof(address));
+            //try to revalidate
+            if (!TryValidateModel(address, nameof(address))  ) {
+                //Shit appens!
+            }
+            //*/
+
             if (ModelState.IsValid)
             {
                 _context.Add(address);
