@@ -29,7 +29,12 @@ namespace Day14Lab1PokeDex.Models {
         public Move? Move3 { get; set; } 
         public Move? Move4 { get; set; } 
         //*/
-
+        public Picture? Picture { get; set; }
+        public List<Element> Elements { get; set; } = new List<Element>();
+        public bool IsMale { get; set; }
+        public bool IsFemale { get; set; }
+        public bool IsLegendary { get; set; }
+        public bool IsEgg { get; set; }
     }
 
     public class Move {
@@ -67,7 +72,7 @@ namespace Day14Lab1PokeDex.Models {
 
     }
 
-    public class Pictures {
+    public class Picture {
         public int PictureID { get; set; }
         public string PictureName { get; set; } = "";
         public byte[]? RawData { get; set; }
