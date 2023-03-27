@@ -1,0 +1,92 @@
+﻿@model Day14Lab1PokeDex.Models.Move
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Move</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MoveClass" class="control-label"></label>
+                <input asp-for="MoveClass" class="form-control" />
+                <span asp-validation-for="MoveClass" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MoveName" class="control-label"></label>
+                <input asp-for="MoveName" class="form-control" />
+                <span asp-validation-for="MoveName" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsAttack" /> @Html.DisplayNameFor(model => model.IsAttack)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="MoveHitPoints" class="control-label"></label>
+                <input asp-for="MoveHitPoints" class="form-control" />
+                <span asp-validation-for="MoveHitPoints" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MoveSpeedUp" class="control-label"></label>
+                <input asp-for="MoveSpeedUp" class="form-control" />
+                <span asp-validation-for="MoveSpeedUp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MoveAttackUp" class="control-label"></label>
+                <input asp-for="MoveAttackUp" class="form-control" />
+                <span asp-validation-for="MoveAttackUp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MoveDefenseUp" class="control-label"></label>
+                <input asp-for="MoveDefenseUp" class="form-control" />
+                <span asp-validation-for="MoveDefenseUp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MoveLifePointsUp" class="control-label"></label>
+                <input asp-for="MoveLifePointsUp" class="form-control" />
+                <span asp-validation-for="MoveLifePointsUp" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsPriority" /> @Html.DisplayNameFor(model => model.IsPriority)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="MovePrecision" class="control-label"></label>
+                <input asp-for="MovePrecision" class="form-control" />
+                <span asp-validation-for="MovePrecision" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MoveMaxRepeat" class="control-label"></label>
+                <input asp-for="MoveMaxRepeat" class="form-control" />
+                <span asp-validation-for="MoveMaxRepeat" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsElementary" /> @Html.DisplayNameFor(model => model.IsElementary)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="ElementID" class="control-label"></label>
+                <select asp-for="ElementID" class ="form-control" asp-items="ViewBag.ElementID"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

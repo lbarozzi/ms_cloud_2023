@@ -1,0 +1,107 @@
+﻿@model IEnumerable<Day14Lab1PokeDex.Models.Move>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MoveClass)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MoveName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAttack)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MoveHitPoints)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MoveSpeedUp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MoveAttackUp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MoveDefenseUp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MoveLifePointsUp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsPriority)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MovePrecision)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MoveMaxRepeat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsElementary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Element)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoveClass)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoveName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAttack)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoveHitPoints)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoveSpeedUp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoveAttackUp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoveDefenseUp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoveLifePointsUp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsPriority)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MovePrecision)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoveMaxRepeat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsElementary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Element.ElementID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MoveID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MoveID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MoveID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

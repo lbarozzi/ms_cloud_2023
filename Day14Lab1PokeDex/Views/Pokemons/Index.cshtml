@@ -1,0 +1,119 @@
+﻿@model IEnumerable<Day14Lab1PokeDex.Models.Pokemon>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PokemonName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PokemonWeight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PokemonLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PokemonXP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PokemonAttack)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PokemonDefense)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PokemonSpecialAttack)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PokemonSpecialDefense)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PokemonSpeeed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PokemonLifePoints)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PokemonStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsMale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsFemale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsLegendary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsEgg)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PokemonName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PokemonWeight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PokemonLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PokemonXP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PokemonAttack)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PokemonDefense)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PokemonSpecialAttack)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PokemonSpecialDefense)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PokemonSpeeed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PokemonLifePoints)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PokemonStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsMale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsFemale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsLegendary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsEgg)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PokemonID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PokemonID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PokemonID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

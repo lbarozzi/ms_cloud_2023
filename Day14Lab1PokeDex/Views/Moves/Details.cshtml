@@ -1,0 +1,96 @@
+﻿@model Day14Lab1PokeDex.Models.Move
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Move</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MoveClass)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MoveClass)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MoveName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MoveName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsAttack)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsAttack)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MoveHitPoints)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MoveHitPoints)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MoveSpeedUp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MoveSpeedUp)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MoveAttackUp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MoveAttackUp)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MoveDefenseUp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MoveDefenseUp)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MoveLifePointsUp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MoveLifePointsUp)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsPriority)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsPriority)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MovePrecision)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MovePrecision)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MoveMaxRepeat)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MoveMaxRepeat)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsElementary)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsElementary)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Element)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Element.ElementID)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.MoveID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

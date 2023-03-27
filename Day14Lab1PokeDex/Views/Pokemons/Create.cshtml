@@ -1,0 +1,103 @@
+﻿@model Day14Lab1PokeDex.Models.Pokemon
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Pokemon</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PokemonName" class="control-label"></label>
+                <input asp-for="PokemonName" class="form-control" />
+                <span asp-validation-for="PokemonName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PokemonWeight" class="control-label"></label>
+                <input asp-for="PokemonWeight" class="form-control" />
+                <span asp-validation-for="PokemonWeight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PokemonLevel" class="control-label"></label>
+                <input asp-for="PokemonLevel" class="form-control" />
+                <span asp-validation-for="PokemonLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PokemonXP" class="control-label"></label>
+                <input asp-for="PokemonXP" class="form-control" />
+                <span asp-validation-for="PokemonXP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PokemonAttack" class="control-label"></label>
+                <input asp-for="PokemonAttack" class="form-control" />
+                <span asp-validation-for="PokemonAttack" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PokemonDefense" class="control-label"></label>
+                <input asp-for="PokemonDefense" class="form-control" />
+                <span asp-validation-for="PokemonDefense" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PokemonSpecialAttack" class="control-label"></label>
+                <input asp-for="PokemonSpecialAttack" class="form-control" />
+                <span asp-validation-for="PokemonSpecialAttack" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PokemonSpecialDefense" class="control-label"></label>
+                <input asp-for="PokemonSpecialDefense" class="form-control" />
+                <span asp-validation-for="PokemonSpecialDefense" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PokemonSpeeed" class="control-label"></label>
+                <input asp-for="PokemonSpeeed" class="form-control" />
+                <span asp-validation-for="PokemonSpeeed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PokemonLifePoints" class="control-label"></label>
+                <input asp-for="PokemonLifePoints" class="form-control" />
+                <span asp-validation-for="PokemonLifePoints" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PokemonStatus" class="control-label"></label>
+                <input asp-for="PokemonStatus" class="form-control" />
+                <span asp-validation-for="PokemonStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsMale" /> @Html.DisplayNameFor(model => model.IsMale)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsFemale" /> @Html.DisplayNameFor(model => model.IsFemale)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsLegendary" /> @Html.DisplayNameFor(model => model.IsLegendary)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsEgg" /> @Html.DisplayNameFor(model => model.IsEgg)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
