@@ -68,7 +68,7 @@ namespace Day13Lab2.Controllers
             if (ModelState.IsValid)
             {
 
-                string s = Request.Form["TemperatureValue"];
+                //Single s = Single.Parse(Request.Form["TemperatureValue"]);
 
                 temperature.Zone = _context.Zones.Find(temperature.ZoneId);
                 _context.Add(temperature);

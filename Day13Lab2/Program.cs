@@ -26,7 +26,7 @@ if (!app.Environment.IsDevelopment()) {
 var supportedCultures = new[]
 {
         new CultureInfo("en-US"),
-        new CultureInfo("es"),
+        new CultureInfo("it-IT"),
 };
 
 app.UseRequestLocalization(new RequestLocalizationOptions { 
