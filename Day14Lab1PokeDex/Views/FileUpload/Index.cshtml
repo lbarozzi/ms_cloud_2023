@@ -8,8 +8,10 @@
 <form asp-action="UploadFile" method="post" enctype="multipart/form-data">
     <p>Select file</p>
 
-    <input type="file" name="UploadFile" multiple />
+    <input type="file" name="UploadFile" multiple/>
 
     <input type="submit" />
 
 </form>
+
+<img src=@Url.Action("GetFile","FileUpload",new {fileName="history-of-the-microsoft-logo-1.jpg"}) > </img>
