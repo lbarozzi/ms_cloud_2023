@@ -6,16 +6,39 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Day14Lab1PokeDex.Models;
+using System.IO;
+using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+using System.ComponentModel;
 
 namespace Day14Lab1PokeDex.Controllers
 {
-    public class ElementsController : Controller
-    {
+    public class ElementsController : Controller {
         private readonly DataContext _context;
 
-        public ElementsController(DataContext context)
-        {
+        public ElementsController(DataContext context) {
             _context = context;
+            var dbmosse = JsonObject.Parse(System.IO.File.ReadAllText("moves.json"));
+
+
+            Dictionary<string,string> ListaElementi= new Dictionary<string, string>();  
+
+            foreach (var mv in dbmosse.AsArray()) {
+                var el = mv!["Type"];
+                if (el!=null)
+                    ListaElementi[el.AsValue().ToString()]= el.AsValue().ToString();
+            }
+ 
+            if (context.Elements.Count() == 0) {
+                foreach(var el in ListaElementi.Keys) {
+                    _context.Elements.Add(new Element { 
+                        ElementName= el,
+                    });
+                }
+                _context.SaveChanges();
+            }
+
         }
 
         // GET: Elements
