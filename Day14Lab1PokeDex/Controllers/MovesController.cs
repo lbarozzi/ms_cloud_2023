@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Day14Lab1PokeDex.Models;
+using System.Text.Json.Nodes;
 
 namespace Day14Lab1PokeDex.Controllers
 {
@@ -16,6 +17,37 @@ namespace Day14Lab1PokeDex.Controllers
         public MovesController(DataContext context)
         {
             _context = context;
+            /*
+               {
+                    "ID": 0,
+                    "Name": "Botta",
+                    "Type": "Normale",
+                    "Power": 40,
+                    "Accuracy": 100,
+                    "Category": "Fisico",
+                    "PP": 35
+               }
+            //*/
+            if (_context.Moves.Count() == 0) {
+                var dbmosse = JsonObject.Parse(System.IO.File.ReadAllText("moves.json"));
+
+                foreach (var mv in dbmosse.AsArray()) {
+                    Element e = (from el in _context.Elements
+                                where el.ElementName == mv["Type"].ToString()
+                                select el).First();
+                    _context.Moves.Add(new Move {
+                        MoveName = mv!["Name"].ToString(),
+                        MoveHitPoints = Int32.Parse(mv["Power"].ToString()),
+                        MovePrecision = Int32.Parse(mv["Accuracy"].ToString()),
+                        Element = e,
+                        ElementID = e.ElementID,
+                        MoveMaxRepeat = Int32.Parse(mv["PP"].ToString())
+                    });
+                }
+
+                _context.SaveChanges();
+
+            }
         }
 
         // GET: Moves

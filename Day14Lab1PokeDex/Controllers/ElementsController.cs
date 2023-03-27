@@ -19,19 +19,20 @@ namespace Day14Lab1PokeDex.Controllers
 
         public ElementsController(DataContext context) {
             _context = context;
-            var dbmosse = JsonObject.Parse(System.IO.File.ReadAllText("moves.json"));
-
-
-            Dictionary<string,string> ListaElementi= new Dictionary<string, string>();  
-
-            foreach (var mv in dbmosse.AsArray()) {
-                var el = mv!["Type"];
-                if (el!=null)
-                    ListaElementi[el.AsValue().ToString()]= el.AsValue().ToString();
-            }
- 
+           
             if (context.Elements.Count() == 0) {
-                foreach(var el in ListaElementi.Keys) {
+                //Load Data From JSON
+                var dbmosse = JsonObject.Parse(System.IO.File.ReadAllText("moves.json"));
+
+                Dictionary<string, string> ListaElementi = new Dictionary<string, string>();
+
+                foreach (var mv in dbmosse.AsArray()) {
+                    var el = mv!["Type"];
+                    if (el != null)
+                        ListaElementi[el.AsValue().ToString()] = el.AsValue().ToString();
+                }
+                //Put in DB
+                foreach (var el in ListaElementi.Keys) {
                     _context.Elements.Add(new Element { 
                         ElementName= el,
                     });
