@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<form asp-action="UploadFile" method="post" enctype="multipart/form-data">
+    <p>Select file</p>
+
+    <input type="file" name="UploadFile" multiple />
+
+    <input type="submit" />
+
+</form>
