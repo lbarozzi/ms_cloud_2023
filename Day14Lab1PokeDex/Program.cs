@@ -1,5 +1,6 @@
 using Day14Lab1PokeDex.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +15,8 @@ builder.Services.AddDbContext<DataContext>(opt => opt.UseSqlServer(
 //1: Service cookie configuration
 builder.Services.Configure<CookiePolicyOptions>(options => {
     options.CheckConsentNeeded = context => true;
-    options.MinimumSameSitePolicy = SameSiteMode.None;
+    options.MinimumSameSitePolicy = SameSiteMode.Strict;
+    //options.ConsentCookie.IsEssential = true;
 });
 
 var app = builder.Build();
