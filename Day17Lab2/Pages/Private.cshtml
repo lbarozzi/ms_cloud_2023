@@ -1,0 +1,23 @@
+﻿@page
+@model Day17Lab2.Pages.PrivateModel
+
+@{
+    
+}
+
+<h1>Welcome to reserved page: @User.Identity.Name</h1>
+
+@if (@Model.Cipher!=null) { 
+    <h3>Hash: @Model.Cipher</h3> 
+}
+
+<form method="post">
+    <label>Please insert your plain test</label>
+
+    <input type="text" asp-for="PlainText" />
+
+
+    <br />
+    <input type="submit" value="Encode" />
+
+</form>

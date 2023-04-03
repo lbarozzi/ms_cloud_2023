@@ -16,13 +16,6 @@
     <h3>This user is PowerUser</h3>
 }
 
-@if (User.IsInRole("adminrole")) {
-    <h3>This user is admin</h3>
-}
-
-@if (User.IsInRole("powerole")) {
-    <h3>This user is PowerUser</h3>
-}
 <hr/>
 @foreach(var claim in User.Claims){
     <li

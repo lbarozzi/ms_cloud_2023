@@ -1,4 +1,4 @@
-using Day17Lab1.Data;
+using Day17Lab2.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,19 +11,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddRoles<IdentityRole>()       //Use roles 
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
-
-//Test user-secrets
-string sqlite = builder.Configuration["ConnectionStrings:sqlite"];
-
-string key = builder.Configuration["Antani:TestKey"];
-
-string keyu = builder.Configuration.GetSection("Antani")["TestKey"];
-
-Console.WriteLine(key);
-
-builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -31,7 +21,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment()) {
     app.UseMigrationsEndPoint();
 } else {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
@@ -44,9 +34,6 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
 app.Run();

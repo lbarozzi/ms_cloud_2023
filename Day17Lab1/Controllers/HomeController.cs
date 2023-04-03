@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
+
 namespace Day17Lab1.Controllers {
+    [Authorize]
     public class HomeController : Controller {
         private readonly ILogger<HomeController> _logger;
 
@@ -19,7 +21,7 @@ namespace Day17Lab1.Controllers {
             return View();
         }
 
-        [Authorize(Roles ="admin")]
+        [Authorize(Roles ="power")]
         public IActionResult ShowUser() {
             return View();
         }
