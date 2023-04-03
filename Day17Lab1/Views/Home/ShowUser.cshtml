@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Restricted Area";
+}
+
+<h1>Hello: @User.Identity.Name</h1>
+
+<hr />
+@if(User.IsInRole("admin")) {
+    <h3>This user is admin</h3>
+}
+
+@if(User.IsInRole("power")) {
+    <h3>This user is PowerUser</h3>
+}
+
+@if (User.IsInRole("adminrole")) {
+    <h3>This user is admin</h3>
+}
+
+@if (User.IsInRole("powerole")) {
+    <h3>This user is PowerUser</h3>
+}
+<hr/>
+@foreach(var claim in User.Claims){
+    <li
+        >@claim.Type.ToString()   
+        =
+        @claim.Value.ToString()
+    </li>
+}
