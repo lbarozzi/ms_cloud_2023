@@ -31,12 +31,13 @@ builder.Services.AddHttpClient("Md5", client => {
     client.DefaultRequestHeaders.Add("mytoken", "antanti");
 });
 
-//cats
-uri = builder.Configuration["cats:uri"];
+//*cat
+string caturi = builder.Configuration["cats:uri"];
 builder.Services.AddHttpClient("cats", client => {
-    client.BaseAddress = new Uri(uri);
+    client.BaseAddress = new Uri(caturi);
     client.DefaultRequestHeaders.Add("mytoken", "antanti");
 });
+//*/;
 
 var app = builder.Build();
 

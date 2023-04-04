@@ -20,6 +20,18 @@ namespace Day18Lab2.Controllers {
             return View();
         }
 
+        public async Task<IActionResult> query(string PlainText) {
+            //To itbase + ?PlainText=ciccciocci
+            string url = $"{_httpClient.BaseAddress.ToString()}?PlainText={PlainText}";
+            var res = await _httpClient.GetAsync(url);
+            res.EnsureSuccessStatusCode();
+            if(res.IsSuccessStatusCode) {
+                var dato =await  res.Content.ReadAsStringAsync();
+                ViewData["result"]=dato.ToString();
+            }
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error() {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
