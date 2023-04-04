@@ -29,6 +29,8 @@ string uri = builder.Configuration["WebMD5:uri"];
 builder.Services.AddHttpClient("Md5", client => {
     client.BaseAddress = new Uri(uri) ;
     client.DefaultRequestHeaders.Add("mytoken", "antanti");
+    // -H 'X-Goog-Api-Key: YOUR_API_KEY' 
+    client.DefaultRequestHeaders.Add("'X-Goog-Api-Key", "MYSUOERSECRET-KEY-FROM-GOOLGe");
 });
 
 //*cat

@@ -1,12 +1,22 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    List<string> quotes=null;
+    if (ViewData.ContainsKey("Quotes")) {
+        quotes = ViewBag.Quotes;
+    }
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
-
+@if(@quotes!=null) {
+    <ul>
+    @foreach(var sentence in quotes) {
+        <li>@sentence</li>
+    }
+    </ul>
+}
 
 <hr />
 <form method="post" asp-action="query">
