@@ -9,6 +9,12 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<hr />
+@foreach(var pokemon in Model) {
+    @await Html.PartialAsync("_PokemonPartial",pokemon)
+}
+<hr/>
+<!--
 <table class="table">
     <thead>
         <tr>
@@ -117,3 +123,4 @@
 }
     </tbody>
 </table>
+-->

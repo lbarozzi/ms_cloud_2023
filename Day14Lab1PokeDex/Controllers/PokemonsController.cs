@@ -22,7 +22,9 @@ namespace Day14Lab1PokeDex.Controllers
         public async Task<IActionResult> Index()
         {
               return _context.Pokemons != null ? 
-                          View(await _context.Pokemons.ToListAsync()) :
+                          View(await _context.Pokemons
+                                .Include(p=>p.Picture)
+                                .ToListAsync()) :
                           Problem("Entity set 'DataContext.Pokemons'  is null.");
         }
 

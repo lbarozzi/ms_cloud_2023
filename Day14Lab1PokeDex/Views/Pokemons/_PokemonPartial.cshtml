@@ -1,0 +1,21 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Day14Lab1PokeDex.Models.Pokemon;
+@{
+}
+
+<div class="card" style="width:380px">
+    <img class="card-img-top" src="@Url.Action("GetDB","FileUpload",new {ID=@Model.Picture.PictureID})" />
+    <div class="card-header">
+        Pokemon
+    </div>
+    <div class="card-body">
+        <div class="card-title">@Model.PokemonName</div>
+        <div class="card-text">XP @Model.PokemonXP</div>
+        <a asp-action="Edit" class="card-link" asp-route-id="@Model.PokemonID">Edit</a>
+    </div>
+    <div class="card-footer">
+        <br/>
+    </div>
+</div>
