@@ -6,13 +6,15 @@
 }
 
 <div class="card" style="width:380px">
-    <img class="card-img-top" src="@Url.Action("GetDB","FileUpload",new {ID=@Model.Picture.PictureID})" />
     <div class="card-header">
-        Pokemon
+        @Model.PokemonName
     </div>
+    <img class="card-img-top" src="@Url.Action("GetDB","FileUpload",new {ID=@Model.Picture.PictureID})" />
     <div class="card-body">
         <div class="card-title">@Model.PokemonName</div>
-        <div class="card-text">XP @Model.PokemonXP</div>
+        <!--div class="card-text">XP @Model.PokemonXP</div -->
+        <div class="card-text">Attack @Model.PokemonAttack</div>
+        <div class="card-text">Defense @Model.PokemonDefense</div>
         <a asp-action="Edit" class="card-link" asp-route-id="@Model.PokemonID">Edit</a>
     </div>
     <div class="card-footer">
