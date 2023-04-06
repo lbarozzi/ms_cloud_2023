@@ -8,15 +8,21 @@ namespace Day18Lab2.Controllers {
         private readonly ILogger<HomeController> _logger;
         private readonly HttpClient _httpClient;
         private readonly HttpClient _httpCat;
-        public HomeController(ILogger<HomeController> logger,IHttpClientFactory ApiFactory) {
+        public HomeController(ILogger<HomeController> logger, IHttpClientFactory ApiFactory) {
             _logger = logger;
             //Uso 
             _httpClient = ApiFactory.CreateClient("Md5");
             _httpCat = ApiFactory.CreateClient("cats");
-        }
+
+        } 
 
         public async Task<IActionResult> Index() {
             //Let's query cats 
+            /*/no automation
+            var _httpCat = new HttpClient();
+            _httpCat.BaseAddress = new Uri("https://cat-fact.herokuapp.com/facts");
+            _httpCat.DefaultRequestHeaders.Add("ntanti", "biriguda");
+            //*/
             var res =await  _httpCat.GetAsync(_httpCat.BaseAddress);
             if (res.IsSuccessStatusCode) {
                 string buffer= await res.Content.ReadAsStringAsync();
