@@ -2,6 +2,11 @@
 
 @{
     ViewData["Title"] = "Index";
+    int pageid = ViewBag.Page;
+    int totcount = ViewBag.TotPages;
+    int next = pageid==totcount? totcount:pageid+1;
+    int prev = pageid == 1 ? 1 : pageid - 1;
+    int size = ViewBag.Size;  
 }
 
 <h1>Index</h1>
@@ -10,9 +15,19 @@
     <a asp-action="Create">Create New</a>
 </p>
 <hr />
+<!-- Manual Pager -->
+<a class="card-link" asp-route-page="@prev">Prev</a>
+( @pageid / @totcount )
+<a class="card-link" asp-route-page="@next">Next</a>
+<!-- Manual Pager -->
 @foreach(var pokemon in Model) {
     @await Html.PartialAsync("_PokemonPartial",pokemon)
 }
+<!-- Manual Pager -->
+<a class="card-link" asp-route-page="@prev">Prev</a>
+( @pageid / @totcount )
+<a class="card-link" asp-route-page="@next">Next</a>
+<!-- Manual Pager -->
 <hr/>
 <!--
 <table class="table">

@@ -49,6 +49,11 @@ namespace Day14Lab1PokeDex.Controllers
         // GET: Pokemons
         public async Task<IActionResult> Index(int page=1, int size=50)
         {
+            if (page < 1)
+                page = 1;
+            ViewData["Page"] = page;
+            ViewData["Size"] = size;
+            ViewData["TotPages"] = _context.Pokemons.Count() / size;
               return _context.Pokemons != null ? 
                           View(await _context.Pokemons
                                 .Include(p=>p.Picture)
