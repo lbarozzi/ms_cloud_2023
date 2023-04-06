@@ -7,5 +7,5 @@
 }
 
 @foreach(var cust in @Model) {
-
+    @await Html.PartialAsync("_CustomerPartial",cust)
 }
