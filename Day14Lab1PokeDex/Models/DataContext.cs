@@ -3,7 +3,10 @@
 namespace Day14Lab1PokeDex.Models {
     public class DataContext : DbContext {
 
-        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
+        public DataContext(DbContextOptions<DataContext> options) : base(options) {
+            //Update-Database
+            Database.Migrate();
+        }
 
         //Tables
         public virtual DbSet<Pokemon> Pokemons { get; set; }
