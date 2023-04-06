@@ -98,7 +98,7 @@ namespace Day14Lab1PokeDex.Controllers {
             Bitmap bitmap = new Bitmap(Bitmap.FromStream(ms1));
 
             Graphics graphic = Graphics.FromImage(bitmap);
-
+            /*
             string myWater = $"LBLogo {DateTime.Now}";
 
             Size l_w = graphic.MeasureString(myWater, SystemFonts.DefaultFont).ToSize();
@@ -114,7 +114,7 @@ namespace Day14Lab1PokeDex.Controllers {
             //
             graphic.DrawString(myWater, SystemFonts.DefaultFont,
                         Brushes.White, p);
-
+            //*/
             using (MemoryStream ms = new MemoryStream()) {
                 bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                 return File(ms.ToArray(), "image/png");

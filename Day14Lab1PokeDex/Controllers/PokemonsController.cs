@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Day14Lab1PokeDex.Models;
+using System.Text.Json.Nodes;
 
 namespace Day14Lab1PokeDex.Controllers
 {
@@ -16,14 +17,43 @@ namespace Day14Lab1PokeDex.Controllers
         public PokemonsController(DataContext context)
         {
             _context = context;
+
+            if (_context.Pokemons.Count()==0) {
+                var json = JsonObject.Parse(System.IO.File.ReadAllText("pokemon.json"));
+                var htp = new HttpClient();
+                foreach(var pok in json.AsArray()) {
+                    Pokemon p = new Pokemon() {
+                        //PokemonID = Int32.Parse(pok!["ID"].AsValue().ToString()),
+                        PokemonName= pok!["Name"].AsValue().ToString(),
+                        PokemonAttack = Int32.Parse(pok!["BaseAttack"].AsValue().ToString()),
+                        PokemonDefense= Int32.Parse(pok!["BaseDefense"].AsValue().ToString()),
+                    };
+                    //
+                    var res= htp.GetAsync(pok["ImgUrl"].AsValue().ToString()).Result;
+                    if(res.IsSuccessStatusCode) {
+                        byte[] img = res.Content.ReadAsByteArrayAsync().Result;
+                        Picture pic = new Picture() {
+                            PictureName = p.PokemonName,
+                            RawData = img
+                        };
+                    _context.Pictures.Add(pic);
+                        p.Picture = pic;
+                    }
+
+                    _context.Pokemons.Add(p);   
+                }
+                _context.SaveChanges();
+            }
         }
 
         // GET: Pokemons
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page=1, int size=50)
         {
               return _context.Pokemons != null ? 
                           View(await _context.Pokemons
                                 .Include(p=>p.Picture)
+                                .Skip(size*(page-1))
+                                .Take(size)
                                 .ToListAsync()) :
                           Problem("Entity set 'DataContext.Pokemons'  is null.");
         }
